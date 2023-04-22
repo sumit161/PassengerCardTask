@@ -1,0 +1,98 @@
+<div class="col-md-4 my-4">
+  <div class="my-4" *ngFor="let item of propertyBinding;index as i">
+    <h6>passenger {{i+1}} </h6>
+    <!-- green/red section -->
+    <div class="card">
+      <div class="card-body">
+        <span
+          [ngClass]="{
+            green: item.checkInDate !== null,
+            red: item.checkInDate === null
+          }"
+        ></span>
+
+        <span>{{ item.fullname }}</span>
+        <div>
+          <!-- inputControl -->
+          <input
+            class="bg-info"
+            type="text"
+            [value]="item.fullname"
+            #template
+            [ngClass]="{ 'd-none': !property || item.id !== id }"
+          />
+          <!-- checkinDate -->
+          <!-- [disabled]="!property || item.id !== id"  -->
+          <p *ngIf="item.checkInDate">
+            Check in date:{{ item.checkInDate | date }}
+          </p>
+          <p *ngIf="!item.checkInDate">Check in date:Not Checked in</p>
+          <!-- children -->
+          <p *ngIf="item.children !== null">
+            Children:{{ item.children.length }}
+          </p>
+          <p *ngIf="item.children === null">Children:0</p>
+        </div>
+        <!-- onEditunction Edit button -->
+        <button
+          class="btn btn-primary mx-2"
+          (click)="OnEdit(template, item.id)"
+          *ngIf="!(property && item.id === id)"
+        >
+          Edit
+        </button>
+        <!-- onEditunction done button -->
+        <button
+          *ngIf="property && item.id === id"
+          class="btn btn-primary mx-2"
+          (click)="OnEdit(template, item.id)"
+        >
+          Done
+        </button>
+
+        <!-- button remove -->
+        <button class="btn btn-primary mx-2" (click)="OnRemove(item.id)">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--    [ngClass]="{ 'd-none': item.id!==id }"-->
+
+<!-- <button class="btn btn-primary" [innerHTML]="flag?'edit':'done'" (click)="flagOnclick(template, item.id)">edit</button> -->
+
+<!-- [innerHTML]='"Male" if property==true else "Female"  -->
+<!-- <input type="text"> -->
+
+<!-- value="{{item.fullname}}" --><!-- class="form-control" -->
+<!-- <div *ngIf="item.id!==id"> -->
+<!-- item.id!==id -->
+<!-- </div> -->
+<!-- <div *ngIf="item.id===id"> -->
+<!-- </div> -->
+
+<!-- id: 4,
+fullname: 'Louise',
+checkedIn: true,
+checkInDate: 1488412800000,
+children: 1
+
+     id: 2,
+      fullname: 'Rose',
+      checkedIn: false,
+      checkInDate: null,
+      children: 2 /* [
+        { name: 'Ted', age: 12 },
+        { name: 'Chloe', age: 7 },
+      ] */,
+    },
+-->
+<!-- [innerHTML]="item.checkInDate | date" -->
+<!-- button edit -->
+
+<!--  [ngClass]="{ 'd-none': item.id===id }"  -->
+<!-- button done -->
+<!-- <ng-container>
+    </ng-container> -->
