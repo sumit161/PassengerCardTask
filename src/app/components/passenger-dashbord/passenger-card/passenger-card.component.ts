@@ -11,6 +11,7 @@ export class PassengerCardComponent implements OnInit {
   newId!: number;
   getLocaleId!: number;
   id!: number;
+  Isvisible: boolean =true;
   // template!:HTMLInputElement
   // @Output() coustomEvent: EventEmitter<string> = new EventEmitter<string>();
   @Output() coustomEvent = new EventEmitter<{
@@ -23,6 +24,7 @@ export class PassengerCardComponent implements OnInit {
   constructor() {}
   OnEdit(para: HTMLInputElement, id: number) {
     this.id = id;
+    this.Isvisible = !this.Isvisible;
     this.property = !this.property;
     this.coustomEvent.emit({ param1: para.value, param2: id });
   }

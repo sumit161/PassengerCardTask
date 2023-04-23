@@ -11,7 +11,7 @@
           }"
         ></span>
 
-        <span>{{ item.fullname }}</span>
+        <span [ngClass]="{ 'visible': Isvisible,'invisible': !Isvisible  }">{{ item.fullname }}</span>
         <div>
           <!-- inputControl -->
           <input
